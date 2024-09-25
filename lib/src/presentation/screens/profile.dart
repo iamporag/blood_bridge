@@ -259,9 +259,8 @@ class BuildContent extends StatelessWidget {
                             width: 100.w,
                             height: 100.h,
                             decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 2.w,
-                                    color: Colors.green),
+                                border:
+                                    Border.all(width: 2.w, color: Colors.green),
                                 shape: BoxShape.circle),
                             child: Center(
                               child: Text(
@@ -316,13 +315,14 @@ class BuildContent extends StatelessWidget {
                                   CircleAvatar(
                                     backgroundColor: const Color(0xFFD1D2D3),
                                     radius: 20.r,
-                                      child: ClipOval(
-                                    child: Icon(
-                                      Icons.scale_sharp,
-                                      size: 8.w,
-                                      color: Colors.red,
+                                    child: ClipOval(
+                                      child: Icon(
+                                        Icons.scale_sharp,
+                                        size: 8.w,
+                                        color: Colors.red,
+                                      ),
                                     ),
-                                  ),),
+                                  ),
                                   const Spacer(),
                                   Text(
                                     "12 Jun 2024",
@@ -352,15 +352,16 @@ class BuildContent extends StatelessWidget {
                                 children: [
                                   const Spacer(),
                                   CircleAvatar(
-                                    backgroundColor:const Color(0xFFD1D2D3),
+                                    backgroundColor: const Color(0xFFD1D2D3),
                                     radius: 20.r,
-                                      child: ClipOval(
-                                    child: Icon(
-                                      Icons.history,
-                                      size: 8.w,
-                                      color: Colors.red,
+                                    child: ClipOval(
+                                      child: Icon(
+                                        Icons.history,
+                                        size: 8.w,
+                                        color: Colors.red,
+                                      ),
                                     ),
-                                  ),),
+                                  ),
                                   const Spacer(),
                                   Text(
                                     "All History",
@@ -390,11 +391,17 @@ class BuildContent extends StatelessWidget {
             ),
           ),
         ),
-        const CustomRequestCard(imageURL: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+        const CustomRequestCard(
+            imageURL:
+                'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
         const Gap(20),
-        const CustomRequestCard(imageURL: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+        const CustomRequestCard(
+            imageURL:
+                'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
         const Gap(20),
-        const CustomRequestCard(imageURL: 'https://images.pexels.com/photos/5384445/pexels-photo-5384445.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+        const CustomRequestCard(
+            imageURL:
+                'https://images.pexels.com/photos/5384445/pexels-photo-5384445.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
       ],
     );
   }
