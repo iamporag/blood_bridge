@@ -361,7 +361,7 @@ class CustomRequestCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    CustomButton(title: "AB+")
+                    const CustomButton(title: "AB+")
                   ],
                 ),
                 Padding(
@@ -472,13 +472,4 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-class NewDrawer extends StatelessWidget {
-  const NewDrawer({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Text("data"),
-    );
-  }
-}

@@ -1,11 +1,8 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:blood_bridge/src/bloc/bloc/nav_bar_bloc.dart';
 import 'package:blood_bridge/src/bloc/cubit/splash_screen_cubit.dart';
 import 'package:blood_bridge/src/routes/app_pages.dart';
 import 'package:blood_bridge/src/utils/app_themes.dart';
-import 'package:blood_bridge/src/utils/styles.dart';
-import 'package:blood_bridge/src/utils/theme.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

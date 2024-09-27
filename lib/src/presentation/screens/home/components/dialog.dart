@@ -1,10 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
+// ignore_for_file: deprecated_member_use, depend_on_referenced_packages, non_constant_identifier_names
 import 'dart:io';
-
-import 'package:blood_bridge/blood_bridge.dart';
-import 'package:blood_bridge/src/presentation/screens/login_screen.dart';
-import 'package:blood_bridge/src/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
