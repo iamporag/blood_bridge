@@ -10,7 +10,8 @@ import 'blood_bridge.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: !kReleaseMode,
+        // enabled: !kReleaseMode,
+        enabled: true,
         builder: (context) => const BloodBridge(),
       ),
     );

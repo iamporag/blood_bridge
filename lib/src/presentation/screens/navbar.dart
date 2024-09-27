@@ -13,6 +13,27 @@ class Navbar extends StatelessWidget {
     return BlocBuilder<NavBarBloc, NavBarState>(
       builder: (context, state) {
         return Scaffold(
+          
+          drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(child: Text('Drawer Header')),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
           resizeToAvoidBottomInset: false,
           body: IndexedStack(
             index: state.selectedItem.index,

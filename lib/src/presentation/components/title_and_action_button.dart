@@ -26,18 +26,21 @@ class TitleAndActionButton extends StatelessWidget {
           Text(
             title,
             style: isHeadline
-                ? Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(color: Colors.black)
+                ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontFamily: "Poppins", fontWeight: FontWeight.w500)
                 : Theme.of(context)
                     .textTheme
                     .titleMedium
-                    ?.copyWith(color: Colors.black),
+                    ?.copyWith(color: Colors.black, fontFamily: "Poppins"),
           ),
           TextButton(
             onPressed: onTap,
-            child: Text(actionLabel ?? 'View All'),
+            child: Text(
+              actionLabel ?? 'View All',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontFamily: "Poppins",
+                  ),
+            ),
           ),
         ],
       ),

@@ -1,9 +1,6 @@
 // ignore_for_file: unused_local_variable, deprecated_member_use, prefer_interpolation_to_compose_strings
-
-import 'dart:ui';
-
-import 'package:blood_bridge/src/constants/app_colors.dart';
 import 'package:blood_bridge/src/presentation/components/title_and_action_button.dart';
+import 'package:blood_bridge/src/presentation/screens/home/components/dialog.dart';
 
 import 'package:blood_bridge/src/routes/routes.dart';
 
@@ -15,6 +12,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../constants/app_defaults.dart';
 import '../../../constants/app_icons.dart';
+import '../../../data/dummy/dummy_data_donors_list.dart';
 import '../components/banner_space.dart';
 import '../components/network_image.dart';
 
@@ -35,63 +33,79 @@ class HomeScreen extends StatelessWidget {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-      drawer: const Drawer(),
       key: scaffoldKey,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              pinned: true,
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.push(
-                        Routes.DRAWER_SCREEN_ROUTE.path); // Opens the drawer
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF2F6F3),
-                    shape: const CircleBorder(),
-                  ),
-                  child: SvgPicture.asset(
-                    AppIcons.sidebarIcon,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.push(Routes.SEARCH_ROUTE.path);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF2F6F3),
-                      shape: const CircleBorder(),
-                    ),
-                    child: SvgPicture.asset(
-                      AppIcons.search,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SliverToBoxAdapter(
               child: ListTile(
+                leading: const CircleAvatar(
+                  child: ClipOval(
+                    child: NetworkImageWithLoader(
+                        "https://images.pexels.com/photos/5840761/pexels-photo-5840761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                  ),
+                ),
                 title: Text(
                   "Hello, User!",
-                  style: theme.textTheme.titleLarge
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                subtitle: const Text(
+                subtitle: Text(
                   'Welcome to Blood Bridge',
+                  style: theme.textTheme.titleSmall,
                 ),
+                trailing: IconButton(
+                  color: Colors.grey,
+                  onPressed: () {
+                    context.push(Routes.SEARCH_ROUTE.path);
+                  },
+                  icon: SvgPicture.asset(AppIcons.search),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.location_on_sharp,
+                    size: 16,
+                  ),
+                  Text(
+                    "Jamalpur,Sadar Upazila",
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
             ),
             const SliverToBoxAdapter(
               child: BannerSpace(),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: ElevatedButton(
+                  onPressed: () {
+                    showGeneralDialog(
+                      context: context,
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return const VerifiedDialog();
+                      },
+                      transitionBuilder: (ctx, anim1, anim2, child) =>
+                          ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: anim1,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: const Text("Request Blood"),
+                ),
+              ),
             ),
             const SliverToBoxAdapter(
               child: DonorsList(),
@@ -111,7 +125,9 @@ class DonorsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String donorName = "Donor's name".substring(0, 12);
+    // String donorName = "Donor's name".substring(0, 12);
+
+    List<Map<String, String>> data = dummyDataDonorList();
 
     return Column(
       children: [
@@ -119,199 +135,144 @@ class DonorsList extends StatelessWidget {
           onTap: () {},
           title: "Donor's List",
         ),
-        SizedBox(
-          height: 160.h,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.03),
-            itemBuilder: (context, index) {
-              return const donor_card();
-            },
-            separatorBuilder: (context, index) =>
-                const SizedBox(width: AppDefaults.padding),
-            itemCount: 10, // Change this to the number of items you have
-          ),
-        ),
+        DonorsCard(data: data),
       ],
     );
   }
 }
 
-class donor_card extends StatelessWidget {
-  const donor_card({
+class DonorsCard extends StatelessWidget {
+  const DonorsCard({
     super.key,
+    required this.data,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Handle tap
-      },
-      child: Container(
-          width: 80.w, // Make it responsive
-          margin: const EdgeInsets.symmetric(
-              horizontal: AppDefaults.padding / 2),
-          padding: const EdgeInsets.all(AppDefaults.padding),
-          decoration: const BoxDecoration(
-            color: Color(0xFFD9D9D9),
-            borderRadius: BorderRadius.all(
-                Radius.circular(AppDefaults.padding)),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        CustomButton(title: "AB+"),
-                        
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      "Donor's Full Name",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    Text(
-                      "Flutter Developer",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Text(
-                      "Jamalpur Sadar Upazila",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 5.w,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size:5.w,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 5.w,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 5.w,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 5.w,
-                        ),
-                        Text(
-                          "(5)",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Gap(5),
-              SizedBox(
-                width: 20.w,
-                height: MediaQuery.of(context).size.height,
-                child: const AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: NetworkImageWithLoader(
-                    "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100270.jpg?t=st=1727247907~exp=1727251507~hmac=1bd5b88144f796178dc5f9e626bc60a1e9a9ca2e8d61003979a342df889b9a6a&w=740",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
-          )),
-    );
-  }
-}
-
-class DonorTileSquare extends StatelessWidget {
-  const DonorTileSquare({super.key});
+  final List<Map<String, String>> data;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.scaffoldBackground,
-      borderRadius: AppDefaults.borderRadius,
-      child: InkWell(
-        onTap: () {},
-        borderRadius: AppDefaults.borderRadius,
-        child: Container(
-          width: 190.w,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 65.w,
-                  child: const AspectRatio(
-                    aspectRatio: 1 / 1,
-                    child: NetworkImageWithLoader(
-                      'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+    return SizedBox(
+      height: 110,
+      child: ListView.separated(
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.03),
+          scrollDirection: Axis.horizontal,
+          separatorBuilder: (context, index) => Gap(5.w),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return Container(
+              width: 320, // Adjust width as needed
+              padding: EdgeInsets.all(2.w),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: Colors.grey[200],
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.grey.withOpacity(0.5),
+                //     blurRadius: 5.r,
+                //     spreadRadius: 1.r,
+                //   ),
+                // ],
               ),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Text(
-                    "Username Podufhudhfudhfuhdufhdu",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  // Image on the left side
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(8.r),
+                      child: AspectRatio(
+                        aspectRatio: 1 / 1,
+                        child: NetworkImageWithLoader(
+                          data[index]['image']!,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+
+                      // Image.network(
+                      //   data[index]['image']!,
+
+                      // ),
+                      ),
+                  const Gap(10),
+
+                  // Text content on the right side
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 5.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  data[index]['name']!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                " (" + data[index]['bloodType']! + ")",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            data[index]['occupation']!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Text(
+                            data[index]['location']!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.star,
+                                  color: Colors.orange, size: 12.h),
+                              Gap(2.w),
+                              Text(
+                                data[index]['review']!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  Text(
-                    "(AB+)",
-                  ),
-                  Text("Username"),
-                  Text("Username"),
-                  Text("Username"),
                 ],
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }
@@ -355,7 +316,7 @@ class CustomRequestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.04),
+          horizontal: MediaQuery.of(context).size.width * 0.03),
       child: Card(
         elevation: 5,
         color: const Color(0xFFD9D9D9),

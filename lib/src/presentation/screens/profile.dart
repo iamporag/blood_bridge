@@ -260,7 +260,7 @@ class BuildContent extends StatelessWidget {
                             height: 100.h,
                             decoration: BoxDecoration(
                                 border:
-                                    Border.all(width: 2.w, color: Colors.green),
+                                    Border.all(width: 5.h, color: Colors.green),
                                 shape: BoxShape.circle),
                             child: Center(
                               child: Text(
@@ -318,7 +318,7 @@ class BuildContent extends StatelessWidget {
                                     child: ClipOval(
                                       child: Icon(
                                         Icons.scale_sharp,
-                                        size: 8.w,
+                                        size: 18.h,
                                         color: Colors.red,
                                       ),
                                     ),
@@ -357,7 +357,7 @@ class BuildContent extends StatelessWidget {
                                     child: ClipOval(
                                       child: Icon(
                                         Icons.history,
-                                        size: 8.w,
+                                        size: 18.h,
                                         color: Colors.red,
                                       ),
                                     ),

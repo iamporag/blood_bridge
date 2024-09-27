@@ -45,6 +45,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   cached_network_image: ^3.4.1
   device_preview: ^1.2.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,12 @@ flutter:
       fonts:
         - asset: assets/fonts/Inter-Regular.ttf
         - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
   #         style: italic
   #   - family: Trajan Pro
