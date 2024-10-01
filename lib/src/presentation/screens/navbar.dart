@@ -1,6 +1,6 @@
 import 'package:blood_bridge/src/bloc/bloc/nav_bar_bloc.dart';
 import 'package:blood_bridge/src/constants/app_colors.dart';
-import 'package:blood_bridge/src/presentation/screens/home/home_screen.dart';
+import 'package:blood_bridge/src/presentation/screens/home/fancy_home_screen.dart';
 import 'package:blood_bridge/src/presentation/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,7 @@ class Navbar extends StatelessWidget {
           body: IndexedStack(
             index: state.selectedItem.index,
             children: const [
-              HomeScreen(),
+              FancyHomeScreen(),
               // SearchScreen(),
               Profile(),
             ],

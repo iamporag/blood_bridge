@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_in_if_null_operators
 
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,9 +1,6 @@
 import 'package:blood_bridge/src/presentation/components/image_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_defaults.dart';
-import 'network_image.dart';
-
 class BannerSpace extends StatelessWidget {
   const BannerSpace({
     super.key,

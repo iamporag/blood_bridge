@@ -4,7 +4,13 @@ import 'package:flutter/services.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_defaults.dart';
 
+Color primary2 = const Color(0xFF687daf);
+
+Color textColors = const Color(0xFF3b3b3b);
+// Color primary2 = const Color(0xFF687daf);
+
 class AppThemes {
+
   static ThemeData get defaultTheme{
     return ThemeData(
      colorSchemeSeed: AppColors.primary,
@@ -17,7 +23,7 @@ class AppThemes {
       brightness: Brightness.light,
       appBarTheme: const AppBarTheme(
         elevation: 0.3,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFeeedf2),
         iconTheme: IconThemeData(color: Colors.black),
         titleTextStyle: TextStyle(
           color: Colors.black,

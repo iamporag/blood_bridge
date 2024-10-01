@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../constants/app_colors.dart';
 import '../../constants/app_defaults.dart';
-
-import '../../constants/app_icons.dart';
 import '../screens/components/network_image.dart';
 import '../screens/home/components/animated_dots.dart';
 
@@ -71,18 +66,17 @@ class _ProductImagesSliderState extends State<ProductImagesSlider> {
                   itemCount: images.length,
                 ),
               ),
-             
             ],
           ),
-           Positioned(
-                left: 0,
-                right: 0,
-                bottom: 10,
-                child: AnimatedDots(
-                  totalItems: images.length,
-                  currentIndex: currentIndex,
-                ),
-              ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 10,
+            child: AnimatedDots(
+              totalItems: images.length,
+              currentIndex: currentIndex,
+            ),
+          ),
           // Positioned(
           //   right: 0,
           //   child: Material(

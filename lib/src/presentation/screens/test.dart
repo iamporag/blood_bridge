@@ -1,10 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/navigation/navigation_bloc.dart';
 import '../../bloc/navigation/navigation_event.dart';
 import '../../bloc/navigation/navigation_state.dart';
-import 'home/home_screen.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -54,6 +55,8 @@ class Test extends StatelessWidget {
 class SearchScreen extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

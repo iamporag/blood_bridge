@@ -12,6 +12,7 @@ class Routes {
   static const REGISTRATION_AGREEMENT_ROUTE = Route(path: '/registration_agreement', name: 'registration agreement');
   static const NAVBAR_SCREEN_ROUTE = Route(path: '/nav', name: 'nav');
   static const HOME_SCREEN_ROUTE = Route(path: '/home', name: 'home');
+  static const FANCY_HOME_SCREEN_ROUTE = Route(path: '/fancy_home', name: 'fancy home');
   static const DRAWER_SCREEN_ROUTE = Route(path: '/drawer', name: 'drawer');
   static const SEARCH_ROUTE = Route(path: '/search', name: 'search');
   static const LIJKE_MATCH_ROUTE = Route(path: '/like_match', name: 'like match');

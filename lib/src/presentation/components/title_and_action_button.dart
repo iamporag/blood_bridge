@@ -26,8 +26,8 @@ class TitleAndActionButton extends StatelessWidget {
           Text(
             title,
             style: isHeadline
-                ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontFamily: "Poppins", fontWeight: FontWeight.w500)
+                ? Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontFamily: "Poppins", fontWeight: FontWeight.bold)
                 : Theme.of(context)
                     .textTheme
                     .titleMedium

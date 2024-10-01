@@ -10,11 +10,7 @@ import 'package:blood_bridge/src/presentation/screens/home/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
-import '../../utils/assets_manager.dart';
-import 'components/network_image.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -32,18 +28,21 @@ class Profile extends StatelessWidget {
     final coverHeight = screenHeight / 3.8;
     final profileHeight = screenHeight / 9.9;
     final top = coverHeight - profileHeight / 2;
-    return const Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Center(
-              child: BuildTop(),
+    return Scaffold(
+      backgroundColor: Color(0xFFF3F6FB),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Center(
+                child: BuildTop(),
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: BuildContent(),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: BuildContent(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -68,18 +67,9 @@ class BuildTop extends StatelessWidget {
     final top = coverHeight - profileHeight / 2;
 
     final bottom = profileHeight / 1.5;
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.center,
+    return Column(
       children: [
-        Container(
-          margin: EdgeInsets.only(bottom: bottom),
-          child: const BuildCoverImage(),
-        ),
-        Positioned(
-          top: top,
-          child: const BuildProfileImage(),
-        ),
+        BuildProfileImage(),
       ],
     );
   }
@@ -148,24 +138,68 @@ class BuildProfileImage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
       child: Stack(
         children: [
-          CircleAvatar(
-            radius: profileHeight * 0.55,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              radius: profileHeight / 2,
-              backgroundImage: const CachedNetworkImageProvider(
-                  "https://yt3.ggpht.com/cdj87Hq90B40PnqWfUBQxV77ViQ2PUAdMXXKUaPbmNIzi_fEEJXJHp_oGBm5jBz5mvHrUMEamzY=s600-c-k-c0x00ffffff-no-rj-rp-mo"),
+          Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                   Colors.red.shade200,
+                        Colors.red.shade500,
+                ],
+              ),
+            ),
+            child: Center(
+              child: Container(
+                width: 140,
+                height: 140,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 2, color: Colors.white),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                          "https://yt3.ggpht.com/cdj87Hq90B40PnqWfUBQxV77ViQ2PUAdMXXKUaPbmNIzi_fEEJXJHp_oGBm5jBz5mvHrUMEamzY=s600-c-k-c0x00ffffff-no-rj-rp-mo"),
+                    )),
+              ),
             ),
           ),
+
+          // CircleAvatar(
+          //   radius: profileHeight * 0.55,
+          //   backgroundColor: Colors.white,
+          //   child: CircleAvatar(
+          //     radius: profileHeight / 2,
+          //     backgroundImage: const CachedNetworkImageProvider(
+          //         "https://yt3.ggpht.com/cdj87Hq90B40PnqWfUBQxV77ViQ2PUAdMXXKUaPbmNIzi_fEEJXJHp_oGBm5jBz5mvHrUMEamzY=s600-c-k-c0x00ffffff-no-rj-rp-mo"),
+          //   ),
+          // ),
           Positioned(
-              right: profileHeight * 0.01,
-              bottom: profileHeight * 0.11,
-              child: const FrostedGlassEffect(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.camera_alt_outlined),
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.white),
+                borderRadius: BorderRadius.circular(100.r),
+                gradient: LinearGradient(
+                  colors: [
+                    // Color(0xFF6EC449),
+                    // Color(0xFF1C73F8),
+                     Colors.red.shade200,
+                        Colors.red.shade500,
+                  ],
                 ),
-              ))
+              ),
+              child: Center(
+                  child: Text(
+                "AB(+) Positive",
+                style:
+                    theme.textTheme.titleMedium?.copyWith(color: Colors.white),
+              )),
+            ),
+          ),
         ],
       ),
     );
@@ -218,7 +252,7 @@ class BuildContent extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
             children: [
               TextSpan(
-                text: " (AB+)",
+                text: " 28",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
@@ -235,6 +269,33 @@ class BuildContent extends StatelessWidget {
           'Jamalpur Sadar Upazila',
           style: theme.textTheme.titleMedium?.copyWith(),
         ),
+        const Gap(20),
+        Divider(),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              children: [Text("10"), Text("Donated")],
+            ),
+            Gap(20),
+            Column(
+              children: [Text("10"), Text("Requested")],
+            ),
+          ],
+        ),
+        Divider(),
+        const Gap(20),
+       Container(
+        width: 100,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          color: Color(0xFFEDF0F7),
+        ),
+        child: Center(
+          child: Text("Pending"),
+        ),
+       ),
         const Gap(20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppDefaults.padding),
@@ -338,38 +399,42 @@ class BuildContent extends StatelessWidget {
                       ),
                       const Gap(5),
                       Expanded(
-                        child: Card(
-                          color: const Color(0xFFD9D9D9),
-                          elevation: 5,
-                          child: Container(
-                            width: screenWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Column(
-                                children: [
-                                  const Spacer(),
-                                  CircleAvatar(
-                                    backgroundColor: const Color(0xFFD1D2D3),
-                                    radius: 20.r,
-                                    child: ClipOval(
-                                      child: Icon(
-                                        Icons.history,
-                                        size: 18.h,
-                                        color: Colors.red,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Card(
+                            color: const Color(0xFFD9D9D9),
+                            elevation: 5,
+                            child: Container(
+                              width: screenWidth,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Column(
+                                  children: [
+                                    const Spacer(),
+                                    CircleAvatar(
+                                      backgroundColor: const Color(0xFFD1D2D3),
+                                      radius: 20.r,
+                                      child: ClipOval(
+                                        child: Icon(
+                                          Icons.history,
+                                          size: 18.h,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    "All History",
-                                    style: theme.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
+                                    const Spacer(),
+                                    Text(
+                                      "All History",
+                                      style:
+                                          theme.textTheme.titleSmall?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
