@@ -9,7 +9,6 @@ import 'package:blood_bridge/src/constants/app_defaults.dart';
 import 'package:blood_bridge/src/presentation/screens/home/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class Profile extends StatelessWidget {
@@ -30,9 +29,21 @@ class Profile extends StatelessWidget {
     final top = coverHeight - profileHeight / 2;
     return Scaffold(
       backgroundColor: Color(0xFFF3F6FB),
+      appBar: AppBar(
+        backgroundColor: Color(0xff8B0105),
+        title: Text(
+          'Profile',
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
+            SliverToBoxAdapter(
+              child: Gap(10),
+            ),
             SliverToBoxAdapter(
               child: Center(
                 child: BuildTop(),
@@ -97,7 +108,7 @@ class BuildCoverImage extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl:
                 "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            width: double.infinity.w,
+            width: double.infinity,
             height: coverHeight,
             fit: BoxFit.cover,
           ),
@@ -106,7 +117,7 @@ class BuildCoverImage extends StatelessWidget {
           top: 20,
           right: 10,
           child: FrostContainer(
-            radius: BorderRadius.circular(5.r),
+            radius: BorderRadius.circular(5),
             xcolors: Colors.white.withOpacity(0.1),
             child: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -145,8 +156,8 @@ class BuildProfileImage extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 colors: [
-                   Colors.red.shade200,
-                        Colors.red.shade500,
+                  Colors.red.shade200,
+                  Colors.red.shade500,
                 ],
               ),
             ),
@@ -182,13 +193,13 @@ class BuildProfileImage extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: Colors.white),
-                borderRadius: BorderRadius.circular(100.r),
+                borderRadius: BorderRadius.circular(100),
                 gradient: LinearGradient(
                   colors: [
                     // Color(0xFF6EC449),
                     // Color(0xFF1C73F8),
-                     Colors.red.shade200,
-                        Colors.red.shade500,
+                    Colors.red.shade200,
+                    Colors.red.shade500,
                   ],
                 ),
               ),
@@ -215,7 +226,7 @@ class FrostContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: radius ?? BorderRadius.circular(12.r),
+      borderRadius: radius ?? BorderRadius.circular(12),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
@@ -285,17 +296,17 @@ class BuildContent extends StatelessWidget {
         ),
         Divider(),
         const Gap(20),
-       Container(
-        width: 100,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.r),
-          color: Color(0xFFEDF0F7),
+        Container(
+          width: 100,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Color(0xFFEDF0F7),
+          ),
+          child: Center(
+            child: Text("Pending"),
+          ),
         ),
-        child: Center(
-          child: Text("Pending"),
-        ),
-       ),
         const Gap(20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppDefaults.padding),
@@ -306,22 +317,22 @@ class BuildContent extends StatelessWidget {
                   color: const Color(0xFFD9D9D9),
                   elevation: 5,
                   child: Container(
-                    height: 165.h,
+                    height: 165,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(8.0.r),
+                      padding: EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // const Spacer(),
                           Container(
-                            width: 100.w,
-                            height: 100.h,
+                            width: 100,
+                            height: 100,
                             decoration: BoxDecoration(
                                 border:
-                                    Border.all(width: 5.h, color: Colors.green),
+                                    Border.all(width: 5, color: Colors.green),
                                 shape: BoxShape.circle),
                             child: Center(
                               child: Text(
@@ -356,7 +367,7 @@ class BuildContent extends StatelessWidget {
               const Gap(10),
               Expanded(
                 child: SizedBox(
-                  height: 170.h,
+                  height: 170,
                   child: Column(
                     children: [
                       Expanded(
@@ -366,7 +377,7 @@ class BuildContent extends StatelessWidget {
                           child: Container(
                             width: screenWidth,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.r),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
@@ -375,11 +386,11 @@ class BuildContent extends StatelessWidget {
                                   const Spacer(),
                                   CircleAvatar(
                                     backgroundColor: const Color(0xFFD1D2D3),
-                                    radius: 20.r,
+                                    radius: 20,
                                     child: ClipOval(
                                       child: Icon(
                                         Icons.scale_sharp,
-                                        size: 18.h,
+                                        size: 18,
                                         color: Colors.red,
                                       ),
                                     ),
@@ -407,7 +418,7 @@ class BuildContent extends StatelessWidget {
                             child: Container(
                               width: screenWidth,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.r),
+                                borderRadius: BorderRadius.circular(12),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(5.0),
@@ -416,11 +427,11 @@ class BuildContent extends StatelessWidget {
                                     const Spacer(),
                                     CircleAvatar(
                                       backgroundColor: const Color(0xFFD1D2D3),
-                                      radius: 20.r,
+                                      radius: 20,
                                       child: ClipOval(
                                         child: Icon(
                                           Icons.history,
-                                          size: 18.h,
+                                          size: 18,
                                           color: Colors.red,
                                         ),
                                       ),
@@ -481,7 +492,7 @@ class FrostedGlassEffect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(100.r),
+      borderRadius: BorderRadius.circular(100),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(

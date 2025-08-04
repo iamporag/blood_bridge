@@ -1,6 +1,7 @@
-
+import 'package:blood_bridge/src/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../constants/app_defaults.dart';
 import '../../../../constants/app_icons.dart';
@@ -39,8 +40,7 @@ class DrawerPage extends StatelessWidget {
               AppSettingsListTile(
                 label: 'Terms & Conditions',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () =>
-                    null,
+                onTap: () => null,
               ),
               AppSettingsListTile(
                 label: 'Help Center',
@@ -76,56 +76,50 @@ class DrawerPage extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 16),
-          child: Column(
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final topHeight = screenHeight / 4;
+    return Scaffold(
+      // backgroundColor: Color(0xff890104),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 0),
+          child: Stack(
+            clipBehavior: Clip.hardEdge,
             children: [
-              HomeHeader(),
-              DiscountBanner(),
-              Categories(),
-              SpecialOffers(),
-              SizedBox(height: 20),
-              PopularProducts(),
-              SizedBox(height: 20),
+              Container(
+                height: topHeight,
+                decoration: BoxDecoration(
+                  color: Color(0xff8B0105),
+                ),
+                child: Column(
+                  children: [
+                    Gap(topHeight / 5),
+                    HomeHeader(),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: topHeight - 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Campaign(),
+                    CategoryArea(),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
@@ -137,26 +131,177 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Expanded(child: SearchField()),
-          const SizedBox(width: 16),
-          IconBtnWithCounter(
-            // numOfitem: 3,
-            svgSrc: cartIcon,
-            press: () {},
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.redAccent.shade200,
+                  radius: 20,
+                  child: Icon(Icons.person),
+                ),
+                title: Text(
+                  "Sakib Hasan",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+                subtitle: Text(
+                  "Jamalpur,Dhaka,Bangladesh",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: IconBtnWithCounter(
+                svgSrc: bellIcon,
+                numOfitem: 3,
+                press: () {},
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  leading: Icon(
+                    Icons.favorite,
+                    size: 35,
+                    color: Colors.red,
+                  ),
+                  title: Text('Live Saver',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                          )),
+                  subtitle: Text('15',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                          )),
+                ),
+              ),
+              Expanded(
+                child: ListTile(
+                  leading: Icon(
+                    Icons.calendar_month,
+                    size: 35,
+                    color: Colors.red,
+                  ),
+                  title: Text(
+                    '9/11/2024',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                  subtitle: Text(
+                    '30 Day Left',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 8),
-          IconBtnWithCounter(
-            svgSrc: bellIcon,
-            numOfitem: 3,
-            press: () {},
+        )
+      ],
+    );
+  }
+}
+
+class Campaign extends StatelessWidget {
+  const Campaign({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text('Blood Donation Campaign'),
+        ),
+        SingleChildScrollView(
+          padding: EdgeInsets.only(left: AppDefaults.padding),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: List.generate(
+              5,
+              (index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 16.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2.8,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Color(0xffF1E5E5),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+  }
+}
+
+class CategoryArea extends StatelessWidget {
+  const CategoryArea({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text("Category"),
+        ),
+        GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            controller: ScrollController(),
+            shrinkWrap: true,
+            itemCount: 6,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              childAspectRatio: 12 / 8,
+            ),
+            itemBuilder: (context, index) {
+              return Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xffF1E5E5),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.person_2,
+                            size: 50,
+                          ),
+                          Gap(10),
+                          Text("Donate\nBlood")
+                        ],
+                      ),
+                    ),
+                  ));
+            }),
+      ],
     );
   }
 }
@@ -223,7 +368,10 @@ class IconBtnWithCounter extends StatelessWidget {
               color: const Color(0xFF979797).withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: SvgPicture.string(svgSrc),
+            child: SvgPicture.string(
+              svgSrc,
+              color: Colors.white,
+            ),
           ),
           if (numOfitem != 0)
             Positioned(

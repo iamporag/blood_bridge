@@ -1,17 +1,14 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, unused_local_variable
 
 import 'package:blood_bridge/src/presentation/components/title_and_action_button.dart';
 import 'package:blood_bridge/src/presentation/screens/components/network_image.dart';
-import 'package:blood_bridge/src/presentation/screens/splash_screen.dart';
-import 'package:blood_bridge/src/routes/routes.dart';
+
 import 'package:blood_bridge/src/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../constants/app_defaults.dart';
+import '../components/banner_space.dart';
 import 'home_screen.dart';
 
 class FancyHomeScreen extends StatelessWidget {
@@ -25,290 +22,109 @@ class FancyHomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF75140C),
+        title: Text(
+          'BBridge',
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+              ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // context.read<PointsBloc>().add(CalculatePointsEvent());
+            },
+            icon: Row(
+              children: [
+                Text(
+                  "5000 Point",
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                      ),
+                ),
+                Gap(5),
+                Icon(
+                  Icons.local_police_outlined,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
+            Column(
               children: [
-                Container(
-                  height: 230,
-                  decoration: BoxDecoration(
-                    // gradient: LinearGradient(
-                    //   colors: [
-                    //     Color(0xFF6EC449),
-                    //     Color(0xFF1C73F8),
-                    //   ],
-                    //   begin: Alignment.topLeft,
-                    //   end: Alignment.bottomRight,
-                    // ),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.red.shade200,
-                        Colors.red.shade500,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(35.r),
-                      bottomRight: Radius.circular(35.r),
-                    ),
+                ListTile(
+                  title: Text(
+                    "Hello, Username!",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                        ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                    ),
-                    child: Column(
-                      children: [
-                        Gap(30.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_month,
-                                  color: Colors.white,
-                                  size: 18.h,
-                                ),
-                                Gap(5.h),
-                                Text(
-                                  "Sun, 9 SEP 2024",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(
-                                        color: Colors.white,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.r),
-                                border: Border.all(
-                                  width: 1.h,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Icon(
-                                  Icons.notifications_rounded,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(10.h),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 65,
-                              height: 65,
-                              child: NetworkImageWithLoader(
-                                borderRadius: BorderRadius.circular(8.r),
-                                "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Gap(5.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Hello, User!",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge
-                                          ?.copyWith(
-                                            color: Colors.white,
-                                          ),
-                                    ),
-                                    Text(
-                                      "👋",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge
-                                          ?.copyWith(
-                                            color: Colors.white,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                Gap(2.h),
-                                Row(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.amber,
-                                        borderRadius:
-                                            BorderRadius.circular(5.r),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 2,
-                                          bottom: 2,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.offline_bolt_outlined),
-                                            Gap(2.w),
-                                            Text(
-                                              "87% Score",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.copyWith(
-                                                    color: Colors.white,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Gap(5.w),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.pink,
-                                        borderRadius:
-                                            BorderRadius.circular(5.r),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 2,
-                                          bottom: 2,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.star),
-                                            Gap(2.w),
-                                            Text(
-                                              "Pro Member",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.copyWith(
-                                                    color: Colors.white,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Gap(10),
-                        InkWell(
-                          onTap: (){
-                            context.push(Routes.SEARCH_ROUTE.path);
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
-                              color: Colors.grey.shade50,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text("Search")),
-                            ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.calendar_month,
+                            color: Colors.red.shade200,
+                            size: 14,
                           ),
-                        ),
-                      ],
-                    ),
+                          Gap(5),
+                          Text(
+                            "Sun, 9 SEP 2024",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Colors.grey,
+                                  fontFamily: 'Poppins',
+                                ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.red.shade200,
+                            size: 14,
+                          ),
+                          Gap(5),
+                          Text(
+                            "Jamalpur Sadar Upazila",
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: Colors.grey,
+                                      fontFamily: 'Poppins',
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 0.0),
-            //   child: ListTile(
-            //     title: Text("Recent Donation"),
-            //   ),
-            // ),
-            // SingleChildScrollView(
-            //   padding: EdgeInsets.only(left: AppDefaults.padding),
-            //   scrollDirection: Axis.horizontal,
-            //   child: Row(
-            //     children: List.generate(5, (index) {
-            //       return Padding(
-            //         padding: EdgeInsets.only(right: AppDefaults.padding),
-            //         child: Container(
-            //           width: 320,
-            //           height: 150,
-            //           decoration: BoxDecoration(
-            //             color: Color(0xFFEDF0F7),
-            //             borderRadius: BorderRadius.circular(8.r),
-            //           ),
-            //           child: Row(
-            //             children: [
-            //               Expanded(
-            //                 child: Container(
-            //                   decoration: BoxDecoration(
-            //                     color: Colors.grey.shade800,
-            //                   ),
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text("Paitent Name"),
-            //                       Text("Paitent Condition"),
-            //                       Text("Blood Group"),
-            //                       Text("Unit"),
-            //                       Text("Location"),
-            //                       // Text("Request By"),
-            //                       Text(
-            //                         "Width : ${screenWidth}",
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-            //               ),
-            //               Divider(
-            //                 height: 120,
-            //               ),
-            //               Expanded(
-            //                 child: Container(
-            //                   decoration: BoxDecoration(
-            //                     color: Colors.grey.shade800,
-            //                   ),
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text("Paitent Name"),
-            //                       Text("Paitent Condition"),
-            //                       Text("Blood Group"),
-            //                       Text("Unit"),
-            //                       Text("Location"),
-            //                       // Text("Request By"),
-            //                       Text(
-            //                         "Height : ${screenHeight}",
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       );
-            //     }),
-            //   ),
-            // ),
+            Gap(10),
+            BannerSpace(),
+            Gap(10),
+            RequestArea(theme: theme),
             Gap(10),
             TopDonorsCard(theme: theme),
             Gap(10),
@@ -354,6 +170,130 @@ class BloodRequestCard extends StatelessWidget {
   }
 }
 
+class RequestArea extends StatelessWidget {
+  final ThemeData theme;
+  const RequestArea({super.key, required this.theme});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(
+            child: Material(
+              elevation: 5,
+              borderRadius: BorderRadius.circular(8),
+              child: InkWell(
+                onTap: () {},
+                splashColor: Colors.redAccent.shade100,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  // width: 200,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Blood\nRequest",
+                              style: theme.textTheme.bodyLarge?.copyWith(
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_right_alt,
+                              color: Colors.red,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20, right: 5.0),
+                        child: CircleAvatar(
+                          radius: 35,
+                          child: ClipOval(
+                            child: NetworkImageWithLoader(
+                                "https://resourceboy.com/wp-content/uploads/2021/10/blood-bag-label-mockup-with-medical-supplies-around.jpg"),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Gap(20),
+          Expanded(
+            child: Material(
+              elevation: 5,
+              borderRadius: BorderRadius.circular(8),
+              child: InkWell(
+                onTap: () {},
+                splashColor: Colors.redAccent.shade100,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  // width: 200,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Become\nA Donner",
+                              style: theme.textTheme.bodyLarge?.copyWith(
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_right_alt,
+                              color: Colors.red,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20, right: 5.0),
+                        child: CircleAvatar(
+                          radius: 35,
+                          child: ClipOval(
+                            child: NetworkImageWithLoader(
+                                "https://resourceboy.com/wp-content/uploads/2021/10/blood-bag-label-mockup-with-medical-supplies-around.jpg"),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class TopDonorsCard extends StatelessWidget {
   const TopDonorsCard({
     super.key,
@@ -370,7 +310,7 @@ class TopDonorsCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 0.0),
             child: TitleAndActionButton(title: "Top Donor's", onTap: () {})),
         SingleChildScrollView(
-          padding: EdgeInsets.only(left: AppDefaults.padding),
+          padding: EdgeInsets.only(left: 16.0),
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(5, (index) {
@@ -396,13 +336,13 @@ class CustomDonorCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: AppDefaults.padding),
       child: Card(
-        elevation: 5,
+        elevation: 2,
         child: Container(
           width: 320,
           height: 120,
           decoration: BoxDecoration(
             color: Color(0xFFEDF0F7),
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
             children: [
@@ -413,18 +353,52 @@ class CustomDonorCard extends StatelessWidget {
                     height: 150,
                     decoration: BoxDecoration(
                       color: Color(0xFFEDF0F7),
-                      borderRadius: BorderRadius.circular(8.r),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: NetworkImageWithLoader(
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(8),
                         'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
                   ),
+                  Container(
+                    width: 100,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.transparent,
+                            Colors.black54,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        )),
+                  ),
+                  Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      )),
                   Positioned(
                     right: 0,
                     bottom: 0,
                     child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: SvgPicture.asset(AssetsManager.AB_POSITIVE_ICON),
+                      padding: const EdgeInsets.all(5.0),
+                      child: SvgPicture.asset(
+                        AssetsManager.BLOOD_AB_POSITIVE_ICON,
+                        width: 35,
+                      ),
                     ),
                   ),
                 ],
@@ -485,29 +459,6 @@ class CustomDonorCard extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Padding(
 //                   padding: EdgeInsets.only(right: AppDefaults.padding),

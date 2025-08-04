@@ -21,7 +21,7 @@ class AppDefaults {
   );
 
   /// Default Box Shadow used for containers
-  static List<BoxShadow> boxShadow = [
+  static List boxShadow = [
     BoxShadow(
       blurRadius: 10,
       spreadRadius: 0,

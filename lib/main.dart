@@ -1,16 +1,14 @@
-import 'package:device_preview/device_preview.dart';
+import 'package:blood_bridge/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'blood_bridge.dart';
 
-// void main() {
-//   runApp(const BloodBridge());
-// }
 
-void main() => runApp(
-      DevicePreview(
-        // enabled: !kReleaseMode,
-        enabled: true,
-        builder: (context) => const BloodBridge(),
-      ),
-    );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(
+    const BloodBridge(),
+  );
+}

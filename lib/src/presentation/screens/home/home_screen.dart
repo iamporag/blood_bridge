@@ -6,7 +6,6 @@ import 'package:blood_bridge/src/presentation/screens/home/components/dialog.dar
 import 'package:blood_bridge/src/routes/routes.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -102,7 +101,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
                   onPressed: () {
                     showGeneralDialog(
@@ -172,14 +171,14 @@ class DonorsCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.03),
           scrollDirection: Axis.horizontal,
-          separatorBuilder: (context, index) => Gap(5.w),
+          separatorBuilder: (context, index) => Gap(5),
           itemCount: data.length,
           itemBuilder: (context, index) {
             return Container(
               width: 320, // Adjust width as needed
-              padding: EdgeInsets.all(2.w),
+              padding: EdgeInsets.all(2),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
+                borderRadius: BorderRadius.circular(12),
                 color: Colors.grey[200],
                 // boxShadow: [
                 //   BoxShadow(
@@ -193,7 +192,7 @@ class DonorsCard extends StatelessWidget {
                 children: [
                   // Image on the left side
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(8.r),
+                      borderRadius: BorderRadius.circular(8),
                       child: AspectRatio(
                         aspectRatio: 1 / 1,
                         child: NetworkImageWithLoader(
@@ -212,7 +211,7 @@ class DonorsCard extends StatelessWidget {
                   // Text content on the right side
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: 5.w),
+                      padding: EdgeInsets.only(right: 5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -267,8 +266,8 @@ class DonorsCard extends StatelessWidget {
                           Row(
                             children: [
                               Icon(Icons.star,
-                                  color: Colors.orange, size: 12.h),
-                              Gap(2.w),
+                                  color: Colors.orange, size: 12),
+                              Gap(2),
                               Text(
                                 data[index]['review']!,
                                 style: Theme.of(context)
@@ -332,29 +331,29 @@ class CustomRequestCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: AppDefaults.padding),
       child: Card(
-        elevation: 5,
+        elevation: 2,
         color: Color(0xFFEDF0F7),
         child: Container(
           width: 320,
-          height: 180,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r)),
+          height: 180 ,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           child: InkWell(
             onTap: () {
-              showGeneralDialog(
+              showGeneralDialog(     
                 context: context,
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return BloodRequestInfo();
                 },
-                transitionBuilder: (ctx, anim1, anim2, child) => ScaleTransition(
+                transitionBuilder: (ctx, anim1, anim2, child) =>
+                    ScaleTransition(
                   alignment: Alignment.center,
                   scale: anim1,
                   child: child,
                 ),
               );
             },
-            splashColor: const Color.fromARGB(255, 255, 0, 0),
-            hoverColor: Colors.red,
-            borderRadius: BorderRadius.circular(12.r),
+            splashColor: const Color.fromARGB(255, 168, 141, 141),
+            borderRadius: BorderRadius.circular(12),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -393,9 +392,12 @@ class CustomRequestCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                        AssetsManager.AB_POSITIVE_ICON,
-                        width: 25.h,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: SvgPicture.asset(
+                          AssetsManager.BLOOD_AB_POSITIVE_ICON,
+                          width: 35,
+                        ),
                       ),
                     ],
                   ),
@@ -422,6 +424,7 @@ class CustomRequestCard extends StatelessWidget {
                                     .textTheme
                                     .titleMedium
                                     ?.copyWith(
+                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
                                 maxLines: 1,
@@ -496,14 +499,14 @@ class CustomButton extends StatelessWidget {
         color: AppColors.primary,
         borderRadius: borderRadius ??
             BorderRadius.only(
-              topRight: Radius.circular(6.r),
-              bottomLeft: Radius.circular(6.r),
+              topRight: Radius.circular(6),
+              bottomLeft: Radius.circular(6),
             ),
       ),
       child: Center(
         child: Padding(
           padding: EdgeInsets.only(
-              left: 5.0.w, right: 5.0.w, top: 5.0.h, bottom: 5.0.h),
+              left: 5.0, right: 5.0, top: 5.0, bottom: 5.0),
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -585,7 +588,7 @@ class BloodRequestInfo extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       color: Color(0xFFEDF0F7),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -770,7 +773,7 @@ class BloodRequestInfo extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       color: Color(0xFFEDF0F7),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -841,7 +844,7 @@ class BloodRequestInfo extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       color: Color(0xFFEDF0F7),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -932,7 +935,7 @@ class BloodRequestInfo extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -947,7 +950,8 @@ class BloodRequestInfo extends StatelessWidget {
                               borderRadius: BorderRadius.circular(100),
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(100),
-                                splashColor: Colors.red.shade400, // Green splash color
+                                splashColor:
+                                    Colors.red.shade400, // Green splash color
                                 onTap: () {
                                   // Handle tap event
                                   context.pop();
@@ -975,7 +979,8 @@ class BloodRequestInfo extends StatelessWidget {
                               borderRadius: BorderRadius.circular(100),
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(100),
-                                splashColor: Colors.green.shade400, // Green splash color
+                                splashColor:
+                                    Colors.green.shade400, // Green splash color
                                 onTap: () {
                                   // Handle tap event
                                   print('Button Tapped!');

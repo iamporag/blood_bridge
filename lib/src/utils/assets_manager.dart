@@ -6,4 +6,5 @@ class AssetsManager {
   static const String BLOOD_DROP_ICON = "assets/icons/blood_drop_icon.svg";
   static const String DROP_ICON = "assets/icons/drop.svg";
   static const String AB_POSITIVE_ICON = "assets/icons/ab_positive_icon.svg";
+  static const String BLOOD_AB_POSITIVE_ICON = "assets/icons/blood_icon_ab_positive.svg";
 }

@@ -15,21 +15,3 @@ class ChangeTabEvent extends NavigationEvent {
   @override
   List<Object?> get props => [index];
 }
-
-class HideBottomNavBarEvent extends NavigationEvent {
-  final bool isHidden;
-
-  const HideBottomNavBarEvent({this.isHidden = true});
-
-  @override
-  List<Object?> get props => [isHidden];
-}
-
-class VisibleBottomNavBarEvent extends NavigationEvent {
-  final bool isVisible;
-
-  const VisibleBottomNavBarEvent({this.isVisible = true});
-
-  @override
-  List<Object?> get props => [isVisible];
-}

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "821078435729",
+    "firebase_url": "https://blood-managment-df4e4-default-rtdb.firebaseio.com",
+    "project_id": "blood-managment-df4e4",
+    "storage_bucket": "blood-managment-df4e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821078435729:android:67d9c6c114528742729c30",
+        "android_client_info": {
+          "package_name": "com.example.blood_bridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsDLLu5uSkwsmBrZPsJc5RHLUc5FhvwxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821078435729:android:6a02345ae1c01f4a729c30",
+        "android_client_info": {
+          "package_name": "com.example.blood_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsDLLu5uSkwsmBrZPsJc5RHLUc5FhvwxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821078435729:android:f3a33ea11eeec89c729c30",
+        "android_client_info": {
+          "package_name": "com.example.edifier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsDLLu5uSkwsmBrZPsJc5RHLUc5FhvwxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
