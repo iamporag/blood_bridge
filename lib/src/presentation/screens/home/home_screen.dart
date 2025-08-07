@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../theme/light_theme.dart';
 import '../../../constants/app_defaults.dart';
 import '../../../constants/app_icons.dart';
 import '../../../data/dummy/dummy_data_donors_list.dart';
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Center(
                 child: Text(
-                  "Screen Size : ${screenWidth}",
+                  "Screen Size : $screenWidth",
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w400,
                   ),
@@ -265,8 +266,7 @@ class DonorsCard extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Icon(Icons.star,
-                                  color: Colors.orange, size: 12),
+                              Icon(Icons.star, color: Colors.orange, size: 12),
                               Gap(2),
                               Text(
                                 data[index]['review']!,
@@ -335,11 +335,11 @@ class CustomRequestCard extends StatelessWidget {
         color: Color(0xFFEDF0F7),
         child: Container(
           width: 320,
-          height: 180 ,
+          height: 180,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           child: InkWell(
             onTap: () {
-              showGeneralDialog(     
+              showGeneralDialog(
                 context: context,
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return BloodRequestInfo();
@@ -496,7 +496,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: AppColor.primary,
         borderRadius: borderRadius ??
             BorderRadius.only(
               topRight: Radius.circular(6),
@@ -505,8 +505,8 @@ class CustomButton extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: EdgeInsets.only(
-              left: 5.0, right: 5.0, top: 5.0, bottom: 5.0),
+          padding:
+              EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0, bottom: 5.0),
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(

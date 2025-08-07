@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import '../../../theme/light_theme.dart';
 import '../../data/dummy/dummy_data_donors_list.dart';
 import '../components/app_back_button.dart';
 import '../../constants/app_colors.dart';
@@ -51,7 +52,7 @@ class _searchPageHeader extends StatelessWidget {
                     child: SvgPicture.asset(
                       AppIcons.search,
                       colorFilter: const ColorFilter.mode(
-                        AppColors.primary,
+                        AppColor.primary,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -221,7 +222,7 @@ class _recentSearchList extends StatelessWidget {
             },
             separatorBuilder: (context, index) => const Divider(
               thickness: 0.5,
-              color: AppColors.primary,
+              color: AppColor.primary,
             ),
           ),
         ),

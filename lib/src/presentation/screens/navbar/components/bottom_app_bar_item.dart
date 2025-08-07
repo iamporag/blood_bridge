@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../theme/light_theme.dart';
 import '../../../../constants/app_colors.dart';
 
 class BottomAppBarItem extends StatelessWidget {
@@ -27,14 +28,14 @@ class BottomAppBarItem extends StatelessWidget {
           SvgPicture.asset(
             iconLocation,
             colorFilter: ColorFilter.mode(
-              isActive ? AppColors.primary : AppColors.placeholder,
+              isActive ? AppColor.primary : AppColor.placeholder,
               BlendMode.srcIn,
             ),
           ),
           Text(
             name,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: isActive ? AppColors.primary : AppColors.placeholder,
+                  color: isActive ? AppColor.primary : AppColor.placeholder,
                 ),
           ),
         ],

@@ -30,22 +30,22 @@ class DrawerPage extends StatelessWidget {
               AppSettingsListTile(
                 label: 'About Us',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
               AppSettingsListTile(
                 label: 'FAQs',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
               AppSettingsListTile(
                 label: 'Terms & Conditions',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
               AppSettingsListTile(
                 label: 'Help Center',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
               AppSettingsListTile(
                 label: 'Rate This App',
@@ -60,13 +60,13 @@ class DrawerPage extends StatelessWidget {
               AppSettingsListTile(
                 label: 'Contact Us',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
               const SizedBox(height: AppDefaults.padding * 3),
               AppSettingsListTile(
                 label: 'Logout',
                 trailing: SvgPicture.asset(AppIcons.right),
-                onTap: () => null,
+                onTap: () {},
               ),
             ],
           ),
@@ -81,53 +81,53 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     final topHeight = screenHeight / 4;
     return Scaffold(
-      // backgroundColor: Color(0xff890104),
-      body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 0),
-          child: Stack(
-            clipBehavior: Clip.hardEdge,
-            children: [
-              Container(
-                height: topHeight,
-                decoration: BoxDecoration(
-                  color: Color(0xff8B0105),
-                ),
-                child: Column(
-                  children: [
-                    Gap(topHeight / 5),
-                    HomeHeader(),
-                  ],
+      body: SafeArea(
+        top: false,
+        child: SingleChildScrollView(
+            child: Stack(
+          clipBehavior: Clip.antiAlias,
+          children: [
+            Container(
+              height: topHeight,
+              decoration: BoxDecoration(
+                color: Color(0xff8B0105),
+              ),
+              child: Column(
+                children: [
+                  Gap(topHeight / 5),
+                  HomeHeader(),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: topHeight - 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: topHeight - 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Campaign(),
-                    CategoryArea(),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  Campaign(),
+                  CategoryArea(),
+                ],
               ),
-            ],
-          )),
+            ),
+          ],
+        )),
+      ),
     );
   }
 }
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +307,7 @@ class CategoryArea extends StatelessWidget {
 }
 
 class SearchField extends StatelessWidget {
-  const SearchField({Key? key}) : super(key: key);
+  const SearchField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -342,11 +342,11 @@ class SearchField extends StatelessWidget {
 
 class IconBtnWithCounter extends StatelessWidget {
   const IconBtnWithCounter({
-    Key? key,
+    super.key,
     required this.svgSrc,
     this.numOfitem = 0,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String svgSrc;
   final int numOfitem;
@@ -406,8 +406,8 @@ class IconBtnWithCounter extends StatelessWidget {
 
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -473,11 +473,11 @@ class Categories extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String icon, text;
   final GestureTapCallback press;
@@ -508,8 +508,8 @@ class CategoryCard extends StatelessWidget {
 
 class SpecialOffers extends StatelessWidget {
   const SpecialOffers({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -549,12 +549,12 @@ class SpecialOffers extends StatelessWidget {
 
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
-    Key? key,
+    super.key,
     required this.category,
     required this.image,
     required this.numOfBrands,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String category, image;
   final int numOfBrands;
@@ -623,10 +623,10 @@ class SpecialOfferCard extends StatelessWidget {
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
-    Key? key,
+    super.key,
     required this.title,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String title;
   final GestureTapCallback press;
@@ -700,12 +700,12 @@ class PopularProducts extends StatelessWidget {
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    Key? key,
+    super.key,
     this.width = 140,
     this.aspectRetio = 1.02,
     required this.product,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   final double width, aspectRetio;
   final Product product;

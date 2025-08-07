@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants/app_colors.dart';
+import '../../../../../theme/light_theme.dart';
 import '../../../../constants/app_defaults.dart';
 
 class AnimatedDots extends StatelessWidget {
@@ -26,7 +26,7 @@ class AnimatedDots extends StatelessWidget {
           width: currentIndex == index ? 25 : 15,
           decoration: BoxDecoration(
             color: currentIndex == index
-                ? AppColors.primary
+                ? AppColor.primary
                 : const Color(0xFF9FC5A6),
             borderRadius: AppDefaults.borderRadius,
           ),

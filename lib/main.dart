@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'blood_bridge.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

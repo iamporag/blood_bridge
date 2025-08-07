@@ -1,11 +1,11 @@
 import 'package:blood_bridge/src/bloc/bloc/nav_bar_bloc.dart';
-import 'package:blood_bridge/src/constants/app_colors.dart';
 import 'package:blood_bridge/src/presentation/screens/home/drawer/drawer_page.dart';
-import 'package:blood_bridge/src/presentation/screens/home/fancy_home_screen.dart';
 import 'package:blood_bridge/src/presentation/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+
+import '../../../theme/light_theme.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
@@ -19,16 +19,16 @@ class Navbar extends StatelessWidget {
           body: IndexedStack(
             index: state.selectedItem.index,
             children: const [
+              Profile(),
               HomeScreen(),
               Chat(),
               // FancyHomeScreen(),
               // SearchScreen(),
-              Profile(),
             ],
           ),
           bottomNavigationBar: NavigationBar(
             elevation: 10,
-            backgroundColor: AppColors.scaffoldBackground,
+            backgroundColor: AppColor.scaffoldBackground,
             onDestinationSelected: (int index) {
               final selectedItem = NavBarItem.values[index];
               context.read<NavBarBloc>().add(NavBarItemSelected(selectedItem));

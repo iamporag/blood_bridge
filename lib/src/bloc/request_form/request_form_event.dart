@@ -7,11 +7,10 @@ sealed class RequestFormEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
 class UpdateStep extends RequestFormEvent {
   final int currentStep;
-  UpdateStep(this.currentStep);
-  
+  const UpdateStep(this.currentStep);
+
   @override
   List<Object> get props => [currentStep];
 }

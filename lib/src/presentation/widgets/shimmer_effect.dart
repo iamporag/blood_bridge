@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -8,19 +6,17 @@ class ShimmerEffect extends StatelessWidget {
   final double height;
   final ShapeBorder shapeBorder;
 
-  const ShimmerEffect.circular({
-    super.key,
-    required this.width,
-    required this.height,
-    this.shapeBorder = const CircleBorder()
-  });
+  const ShimmerEffect.circular(
+      {super.key,
+      required this.width,
+      required this.height,
+      this.shapeBorder = const CircleBorder()});
 
-  const ShimmerEffect.rectangular({
-    super.key,
-    required this.width,
-    required this.height,
-    this.shapeBorder = const RoundedRectangleBorder()
-  });
+  const ShimmerEffect.rectangular(
+      {super.key,
+      required this.width,
+      required this.height,
+      this.shapeBorder = const RoundedRectangleBorder()});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +24,8 @@ class ShimmerEffect extends StatelessWidget {
       height: height,
       width: width,
       child: Shimmer.fromColors(
-        baseColor: Theme.of(context).colorScheme.surfaceVariant,
-        highlightColor:  Theme.of(context).colorScheme.onSurfaceVariant,
+        baseColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        highlightColor: Theme.of(context).colorScheme.onSurfaceVariant,
         child: Container(
           height: height,
           width: width,

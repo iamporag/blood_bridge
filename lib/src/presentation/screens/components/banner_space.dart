@@ -164,8 +164,8 @@ class BannerSpace extends StatelessWidget {
                                   ),
                                   Text(
                                     carousel.status!
-                                        ? 'Status: ' + 'Opened'.toUpperCase()
-                                        : 'Status: ' + 'Closed'.toUpperCase(),
+                                        ? 'Status: ${'Opened'.toUpperCase()}'
+                                        : 'Status: ${'Closed'.toUpperCase()}',
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
